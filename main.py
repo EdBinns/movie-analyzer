@@ -3,6 +3,7 @@ import numpy as np
 import argparse
 import time
 import datetime
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--play_video', help="Tue/False", default=False)
 parser.add_argument('--image', help="Tue/False", default=False)
@@ -75,6 +76,9 @@ def get_box_dimensions(outputs, height, width):
 
 imageNumber = 0
 frameFlag = 120
+objectRange = 0
+
+
 def draw_labels(boxes, confs, colors, class_ids, classes, img, fps):
     global imageNumber
     global lastSavedImage
@@ -93,18 +97,18 @@ def draw_labels(boxes, confs, colors, class_ids, classes, img, fps):
             cv2.rectangle(img, (x, y), (x + w, y + h), color, 4)
             cv2.putText(img, label, (x, y - 5), font, 4, color, 4)
             if label in ["Rifle", "Gun", "Fire"]:
-                segundos = imageNumber/fps
+                segundos = imageNumber / fps
                 tiempo = str(datetime.timedelta(seconds=round(segundos))).replace(":", "-")
                 print(tiempo)
                 if (frameFlag >= 120):
-                    cv2.imwrite('D:\Programacion\YOLO\proyectoSO\imagenesInteres\Frame' + str(imageNumber) + "_Segundo_" + tiempo + '.jpg', img)
+                    cv2.imwrite('D:\Programacion\YOLO\proyectoSO\imagenesInteres\\' + tiempo + '.jpg', img)
                     frameFlag = 0
                 else:
                     frameFlag = 0
         else:
             frameFlag += 1
     img = cv2.resize(img, (800, 600))
-    #cv2.imshow("Image", img)
+    cv2.imshow("Image", img)
 
 
 def image_detect(img_path):

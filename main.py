@@ -3,6 +3,8 @@ import numpy as np
 import argparse
 import time
 import datetime
+import threading
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--play_video', help="Tue/False", default=False)
@@ -26,23 +28,6 @@ def load_yolo():
     output_layers = [layers_names[i[0] - 1] for i in net.getUnconnectedOutLayers()]
     colors = np.random.uniform(0, 255, size=(len(classes), 3))
     return net, classes, colors, output_layers
-
-
-def load_image(img_path):
-    # image loading
-    img = cv2.imread(img_path)
-    img = cv2.resize(img, None, fx=0.4, fy=0.4)
-    height, width, channels = img.shape
-    return img, height, width, channels
-
-
-def display_blob(blob):
-    '''
-        Three images each for RED, GREEN, BLUE channel
-    '''
-    for b in blob:
-        for n, imgb in enumerate(b):
-            cv2.imshow(str(n), imgb)
 
 
 def detect_objects(img, net, outputLayers):
@@ -83,7 +68,7 @@ def draw_labels(boxes, confs, colors, class_ids, classes, img, fps):
     global imageNumber
     global lastSavedImage
     global frameFlag
-    print(imageNumber)
+    #print(imageNumber)
     imageNumber += 1
     indexes = cv2.dnn.NMSBoxes(boxes, confs, 0.5, 0.4)
     font = cv2.FONT_HERSHEY_PLAIN
@@ -101,7 +86,7 @@ def draw_labels(boxes, confs, colors, class_ids, classes, img, fps):
                 tiempo = str(datetime.timedelta(seconds=round(segundos))).replace(":", "-")
                 print(tiempo)
                 if (frameFlag >= 120):
-                    cv2.imwrite('D:\Programacion\YOLO\proyectoSO\imagenesInteres\\' + tiempo + '.jpg', img)
+                    cv2.imwrite('D:\\Carpeta\\' + tiempo + '.jpg', img)
                     frameFlag = 0
                 else:
                     frameFlag = 0
@@ -110,36 +95,43 @@ def draw_labels(boxes, confs, colors, class_ids, classes, img, fps):
     img = cv2.resize(img, (800, 600))
     cv2.imshow("Image", img)
 
-
-def image_detect(img_path):
-    model, classes, colors, output_layers = load_yolo()
-    image, height, width, channels = load_image(img_path)
-    blob, outputs = detect_objects(image, model, output_layers)
-    boxes, confs, class_ids = get_box_dimensions(outputs, height, width)
-    draw_labels(boxes, confs, colors, class_ids, classes, image)
-    while True:
-        key = cv2.waitKey(1)
-        if key == 27:
-            break
-
-
 def start_video(video_path):
     model, classes, colors, output_layers = load_yolo()
     cap = cv2.VideoCapture(video_path)
     FPS = int(cap.get(cv2.CAP_PROP_FPS))
+    lista = []
+    contador = 0
     while True:
         G, frame = cap.read()
         if not G:
             break
-        height, width, channels = frame.shape
-        blob, outputs = detect_objects(frame, model, output_layers)
-        boxes, confs, class_ids = get_box_dimensions(outputs, height, width)
-        draw_labels(boxes, confs, colors, class_ids, classes, frame, FPS)
+        lista.append(frame)
+        print(contador)
+        contador +=1
+        #height, width, channels = frame.shape
+        #blob, outputs = detect_objects(frame, model, output_layers)
+        #boxes, confs, class_ids = get_box_dimensions(outputs, height, width)
+        #draw_labels(boxes, confs, colors, class_ids, classes, frame, FPS)
 
-        key = cv2.waitKey(1)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-    cap.release()
+        #key = cv2.waitKey(1)
+        #if cv2.waitKey(1) & 0xFF == ord('q'):
+        #    break
+    #cap.release()
+
+
+
+    t1 = threading.Thread(target=image_detect, args=(lista[:25],))
+    t2 = threading.Thread(target=image_detect, args=(lista[26:50],))
+
+    t1.start()
+    t2.start()
+
+    t1.join()
+    t2.join()
+
+
+    #image_detect(lista[:200])
+
 
 
 if __name__ == '__main__':
@@ -150,9 +142,4 @@ if __name__ == '__main__':
         if args.verbose:
             print('Opening ' + video_path + " .... ")
         start_video(video_path)
-    if image:
-        image_path = args.image_path
-        if args.verbose:
-            print("Opening " + image_path + " .... ")
-        image_detect(image_path)
     cv2.destroyAllWindows()

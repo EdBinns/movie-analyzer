@@ -12,14 +12,22 @@ parser.add_argument('--image', help="Tue/False", default=False)
 parser.add_argument('--video_path', help="Path of video file", default="videos/fire1.mp4")
 parser.add_argument('--image_path', help="Path of image to detect objects", default="Images/bicycle.jpg")
 parser.add_argument('--verbose', help="To print statements", default=True)
+parser.add_argument('--use_gpu', help='Use GPU (OpenCV must be compiled for GPU).', default=False,)
+parser.add_argument('--weights', help='Path to model weights', default='yolov3.weights')
+parser.add_argument('--config', help='Path to configuration file', default='yolov3.cfg')
+
 args = parser.parse_args()
 
 
 # Load yolo
 def load_yolo():
-    net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
-    net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
-    net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA_FP16)
+    #net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
+    net = cv2.dnn.readNetFromDarknet(args.config, args.weights)
+    if args.use_gpu:
+        print('Using GPU')
+        net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+        net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
+
     classes = []
     with open("obj.names", "r") as f:
         classes = [line.strip() for line in f.readlines()]
@@ -108,26 +116,27 @@ def start_video(video_path):
         lista.append(frame)
         print(contador)
         contador +=1
-        #height, width, channels = frame.shape
-        #blob, outputs = detect_objects(frame, model, output_layers)
-        #boxes, confs, class_ids = get_box_dimensions(outputs, height, width)
-        #draw_labels(boxes, confs, colors, class_ids, classes, frame, FPS)
 
-        #key = cv2.waitKey(1)
-        #if cv2.waitKey(1) & 0xFF == ord('q'):
-        #    break
-    #cap.release()
+        height, width, channels = frame.shape
+        blob, outputs = detect_objects(frame, model, output_layers)
+        boxes, confs, class_ids = get_box_dimensions(outputs, height, width)
+        draw_labels(boxes, confs, colors, class_ids, classes, frame, FPS)
+
+        key = cv2.waitKey(1)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+    cap.release()
 
 
 
-    t1 = threading.Thread(target=image_detect, args=(lista[:25],))
-    t2 = threading.Thread(target=image_detect, args=(lista[26:50],))
+    #t1 = threading.Thread(target=image_detect, args=(lista[:25],))
+    #t2 = threading.Thread(target=image_detect, args=(lista[26:50],))
 
-    t1.start()
-    t2.start()
+    #t1.start()
+    #t2.start()
 
-    t1.join()
-    t2.join()
+    #t1.join()
+    #t2.join()
 
 
     #image_detect(lista[:200])

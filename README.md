@@ -19,9 +19,32 @@ Para nuestra sorpresa, con este metodo se obtuvo una mejora significativa en el 
 
 Mejoras
 -------------
+<p align="center">
+<img align="center" width="600" height="600" src="https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/Tiempo%20de%20ejecucion.png?raw=tru">
+</p>
+Como se puede observar, el tiempo de ejecucion de manera secuencial en comparacion con la concurrente, tiene un porcentaje de mejora de ~26%, puesto que de forma secuencial la suma de los analisis de los videos es de 2:30, y de forma concurrente es de 1:52.
 
+Resultados de Detección.
+-------------
+<p align="center">
+<img align="center" width="400" height="400" src="https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/0-00-00.jpg?raw=true">
+</p>
 
+<p align="center">
+<img align="center" width="400" height="400" src="https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/0-00-01.jpg?raw=true">
+</p>
 
+<p align="center">
+<img align="center" width="400" height="400" src="https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/0-00-34.jpg?raw=true">
+</p>
 
-
-https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/0-00-00.jpg?raw=true
+Tutorial.
+-------------
+1:
+```python
+pip install opencv-python
+```
+2:
+```
+python main.py --play_video True --video_path videos/prueba1.mp4 --video_path2 videos/prueba2.mp4
+```

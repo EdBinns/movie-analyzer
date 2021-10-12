@@ -41,10 +41,12 @@ Resultados de Detección.
 Tutorial.
 -------------
 1:
+Con este comando, se instala OpenCv en el proyecto, el cual es necesario para el analisis de imagenes.
 ```python
 pip install opencv-python
 ```
 2:
+Con este comando, se corre el programa, indicando los paths de los videos.
 ```
 python main.py --play_video True --video_path videos/prueba1.mp4 --video_path2 videos/prueba2.mp4
 ```

@@ -29,7 +29,7 @@ Como se puede observar, el tiempo de ejecucion de manera secuencial en comparaci
 Resultados de Detección.
 -------------
 
-Los resultados que genera el proyecto se estara almacena en la carpeta Results que se encuentra dentro del proyecto
+Los resultados que genera el proyecto se estaran almacenando en la carpeta Results que se encuentra dentro del proyecto
 <p align="center">
 <img align="center" width="400" height="400" src="https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/0-00-00.jpg?raw=true">
 </p>

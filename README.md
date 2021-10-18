@@ -48,7 +48,7 @@ Con este comando, se instala OpenCv en el proyecto, el cual es necesario para el
 pip install opencv-python
 ```
 2:
-Con este comando, se corre el programa.
+Con este comando, el programa buscara la carpeta videos dentro del proyecto y utlizara todos los videos que se encuentren en está.
 ```
  python main.py --play_video True
 ```

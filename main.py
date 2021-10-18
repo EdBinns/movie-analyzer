@@ -104,7 +104,6 @@ def start_video(video_path):
         G, frame = cap.read()
         if not G:
             break
-        #print(contador)
         contador += 1
 
         height, width, channels = frame.shape

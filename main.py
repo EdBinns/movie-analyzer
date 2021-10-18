@@ -3,13 +3,12 @@ import numpy as np
 import argparse
 import datetime
 import threading
+import os
 
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--play_video', help="Tue/False", default=False)
 parser.add_argument('--image', help="Tue/False", default=False)
-parser.add_argument('--video_path', help="Path of video file", default="videos/pistol.mp4")
-parser.add_argument('--video_path2', help="Path of video file", default="videos/rifle.mp4")
 parser.add_argument('--image_path', help="Path of image to detect objects", default="Images/bicycle.jpg")
 parser.add_argument('--verbose', help="To print statements", default=True)
 parser.add_argument('--weights', help='Path to model weights', default='yolov3.weights')
@@ -63,19 +62,16 @@ def get_box_dimensions(outputs, height, width):
 
 
 imageNumber = 0
-frameFlag = 120
 objectRange = 0
 
-
-def draw_labels(boxes, confs, colors, class_ids, classes, img, fps):
+def draw_labels(boxes, confs, colors, class_ids, classes, img, fps, frame_flag):
     global imageNumber
     global lastSavedImage
-    global frameFlag
     imageNumber += 1
     indexes = cv2.dnn.NMSBoxes(boxes, confs, 0.5, 0.4)
     font = cv2.FONT_HERSHEY_PLAIN
     if len(boxes) == 0:
-        frameFlag += 1
+        frame_flag += 1
     for i in range(len(boxes)):
         if i in indexes:
             x, y, w, h = boxes[i]
@@ -86,32 +82,36 @@ def draw_labels(boxes, confs, colors, class_ids, classes, img, fps):
             if label in ["Rifle", "Gun", "Fire"]:
                 segundos = imageNumber / fps
                 tiempo = str(datetime.timedelta(seconds=round(segundos))).replace(":", "-")
-                if (frameFlag >= 120):
-                    cv2.imwrite('D:\\Carpeta\\' + tiempo + '.jpg', img)
-                    frameFlag = 0
+                if (frame_flag >= 120):
+                    cv2.imwrite('.\Results\\' + tiempo + '.jpg', img)
+                    frame_flag = 0
                 else:
-                    frameFlag = 0
+                    frame_flag = 0
         else:
-            frameFlag += 1
+            frame_flag += 1
     img = cv2.resize(img, (800, 600))
     cv2.imshow("Image", img)
+    return frame_flag
 
 def start_video(video_path):
+    print(video_path)
     model, classes, colors, output_layers = load_yolo()
     cap = cv2.VideoCapture(video_path)
     FPS = int(cap.get(cv2.CAP_PROP_FPS))
     contador = 0
+    frameFlag = 120
     while True:
         G, frame = cap.read()
         if not G:
             break
-        print(contador)
+        #print(contador)
         contador += 1
 
         height, width, channels = frame.shape
         blob, outputs = detect_objects(frame, model, output_layers)
         boxes, confs, class_ids = get_box_dimensions(outputs, height, width)
-        draw_labels(boxes, confs, colors, class_ids, classes, frame, FPS)
+
+        frameFlag = draw_labels(boxes, confs, colors, class_ids, classes, frame, FPS, frameFlag)
         key = cv2.waitKey(1)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
@@ -120,22 +120,24 @@ def start_video(video_path):
 
 if __name__ == '__main__':
     video_play = args.play_video
-    image = args.image
+    videos_path = "./videos"
+    thread_list = []
     if video_play:
-        video_path = args.video_path
-        video_path2 = args.video_path2
-        if args.verbose:
-            print('Opening ' + video_path + " .... ")
-
-
-        t1 = threading.Thread(target=start_video, args=(video_path,))
-        t2 = threading.Thread(target=start_video, args=(video_path2,))
-
+        #We use the function listdir from os to get a list of all files in a folder
+        #in this case the folder used is videos_path, where all videos should be
+        files = os.listdir(videos_path)
         start_time = datetime.datetime.now()
-        t1.start()
-        t2.start()
-        t1.join()
-        t2.join()
+        for f in files:
+            #We proceed to fetch the files (videos) to create their specific thread,
+            #then we run it and save it in thread_list
+            video_path = videos_path+'/'+f
+            video_thread = threading.Thread(target=start_video, args=(video_path,))
+            video_thread.start()
+            thread_list.append(video_thread)
+
+        #We proceed to join all the threads to run them simultaneously
+        for video_thread in thread_list:
+            video_thread.join()
         end_time = datetime.datetime.now()
         print('Duration: {}'.format(end_time - start_time))
 

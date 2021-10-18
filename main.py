@@ -105,11 +105,9 @@ def start_video(video_path):
         if not G:
             break
         contador += 1
-
         height, width, channels = frame.shape
         blob, outputs = detect_objects(frame, model, output_layers)
         boxes, confs, class_ids = get_box_dimensions(outputs, height, width)
-
         frameFlag = draw_labels(boxes, confs, colors, class_ids, classes, frame, FPS, frameFlag)
         key = cv2.waitKey(1)
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -134,9 +132,10 @@ if __name__ == '__main__':
             video_thread.start()
             thread_list.append(video_thread)
 
-        #We proceed to join all the threads to run them simultaneously
+        #After all the threads are finished, we join them in the main thread
         for video_thread in thread_list:
             video_thread.join()
+            print("hola")
         end_time = datetime.datetime.now()
         print('Duration: {}'.format(end_time - start_time))
 

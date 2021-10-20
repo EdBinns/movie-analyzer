@@ -45,6 +45,14 @@ Los resultados que genera el proyecto se estaran almacenando en la carpeta Resul
 Tutorial
 -------------
 1: Clonar este repositorio de forma local.  
+Vía http
+``` 
+https://github.com/EdBinns/movie-analyzer.git
+```
+Vía SSH
+```
+git@github.com:EdBinns/movie-analyzer.git
+```
 2: Con este comando, se instala OpenCv en el proyecto, el cual es necesario para el analisis de imagenes.  
 ```python
 pip install opencv-python

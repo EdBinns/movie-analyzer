@@ -44,13 +44,20 @@ Los resultados que genera el proyecto se estaran almacenando en la carpeta Resul
 
 Tutorial
 -------------
-1:
-Con este comando, se instala OpenCv en el proyecto, el cual es necesario para el analisis de imagenes.
+1:  
+Clonar este repositorio de forma local.  
+
+2:  
+Con este comando, se instala OpenCv en el proyecto, el cual es necesario para el analisis de imagenes.  
 ```python
 pip install opencv-python
-```
-2:
-Con este comando, el programa buscara la carpeta videos dentro del proyecto y utlizara todos los videos que se encuentren en está.
-```
+``` 
+
+3: 
+Ingresar los videos de interés en la carpeta "Videos" del proyecto.  
+
+4:
+Con este comando, el programa buscara la carpeta videos dentro del proyecto y utlizara todos los videos que se encuentren en está.  
+```  
  python main.py --play_video True
 ```

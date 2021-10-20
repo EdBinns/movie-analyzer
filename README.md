@@ -12,14 +12,14 @@ Sin embargo, una vez implementada esta posible solución, nos percatamos que no 
   
 Multiples videos de forma concurrente  
 -------------
-En este caso, con este metodo se buscaba ejecutar multiples videos con YOLOv3. De esta manera se busca obtener resultados de reduccion de tiempo al intentar analizar mas de un video. Por lo cual, el tiempo de cada video no se ve reducido, sino que al estar ejecutandose a la vez, sumado el resultado concluimos que es menor el tiempo de ejecucion que si sumasemos independientemente la duracion de analisis de un video1 con el analisis de un video2. 
+Con este metodo lo que se busca es ejecutar multiples videos con YOLOv3 para de esta forma obtener una reducción de tiempo con respecto a la forma secuencial. Por lo cual, el tiempo de cada video como tal no se ve reducido, sino que al estar ejecutándose de forma paralela, el resultado en tiempo total de ejecución es menor a que si sumasemos individualmente la duracion de analisis del primer video con el analisis del segundo. 
 
 En esta estrategia, es importante mencionar que no se guarda una imagen cada vez que se detecta un arma, puesto que en una misma escena se guardaría una gran cantidad de imágenes que representarían lo mismo y por lo tanto no sería adecuado. Lo que se realizó fue una estrategia en la cual si se detecta una pistola/rifle/fuego, se guarda la imagen solamente si en los últimos 120 frames no se ha detectado nada, en caso contrario de que ya se haya detectado un arma en los 120 frames anteriores, se procede a reiniciar el contador de frames. De esta forma en una escena de mucha acción violenta, solamente se guardaría una imagen con el tiempo en segundos en el cual fue detectada.
 
 Para nuestra sorpresa, con este metodo se obtuvo una mejora significativa en el tiempo de analisis. La cual queda documentada en la seccion de mejoras.
 
 
-Mejoras
+Comparativa entre análisis secuencial vs paralelo.
 -------------
 <p align="center">
 <img align="center" width="600" height="600" src="https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/Tiempo%20de%20ejecucion.png?raw=tru">

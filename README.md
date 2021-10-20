@@ -3,9 +3,9 @@ Campus Tecnológico Local San Carlos <br>
 Principios de Sistemas Operativos - II Semestre 2021 <br>
 
 Proyecto creado por:
-- Eduardo Binns Sánchez  [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/EdBinns)
-- Anthony Gariffith González  [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/AnthonyGriffith)
-- Andres Mora Barrantes  [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/amorabarrantes)
+-  [![Github](https://img.shields.io/badge/Github-Eduardo_Binns-100000?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/EdBinns) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Eduardo_Binns-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=101010)](https://www.linkedin.com/in/eduar-binns)
+-  [![Github](https://img.shields.io/badge/GitHub-Anthony_Griffith-100000?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/AnthonyGriffith) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Anthony_Griffith-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=101010)](https://www.linkedin.com/in/anthony-griffith/)
+-   [![Github](https://img.shields.io/badge/GitHub-Andres_Mora-100000?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/amorabarrantes)[![LinkedIn](https://img.shields.io/badge/LinkedIn-Andres_Mora-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=101010)](https://www.linkedin.com/in/andres-mora-barrantes-144475192/)
 
 
 

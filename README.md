@@ -42,17 +42,13 @@ Resultados de Detección
 -------------
 
 Los resultados que genera el proyecto se estaran almacenando en la carpeta Results que se encuentra dentro del proyecto
-<p align="center">
-<img align="center" width="400" height="400" src="https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/0-00-00.jpg?raw=true">
+
+<p float="center" style="text-align:center;">
+<img align="center" width="300" height="300" src="https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/0-00-00.jpg?raw=true">
+ <img align="center" width="300" height="300" src="https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/0-00-01.jpg?raw=true">
+ <img align="center" width="300" height="300" src="https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/0-00-34.jpg?raw=true">
 </p>
 
-<p align="center">
-<img align="center" width="400" height="400" src="https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/0-00-01.jpg?raw=true">
-</p>
-
-<p align="center">
-<img align="center" width="400" height="400" src="https://github.com/EdBinns/movie-analyzer/blob/main/imagenesGeneradas/0-00-34.jpg?raw=true">
-</p>
 
 Tutorial
 -------------

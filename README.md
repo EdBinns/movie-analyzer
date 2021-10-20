@@ -3,9 +3,11 @@ Campus Tecnológico Local San Carlos <br>
 Principios de Sistemas Operativos - II Semestre 2021 <br>
 
 Proyecto creado por:
-- Eduardo Binns Sánchez <a href="https://github.com/EdBinns">GitHub<a/>
-- Anthony Gariffith González <a href="https://github.com/AnthonyGriffith">GitHub<a/>
-- Andres Mora Barrantes <a href="https://github.com/amorabarrantes">GitHub<a/>
+- Eduardo Binns Sánchez  [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/EdBinns)
+- Anthony Gariffith González  [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/AnthonyGriffith)
+- Andres Mora Barrantes  [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/amorabarrantes)
+
+
 
 
 # Analizador de peliculas con YOLO V3  

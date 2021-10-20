@@ -1,3 +1,13 @@
+Instituto Tecnológico de Costa Rica <br>
+Campus Tecnológico Local San Carlos <br>
+Principios de Sistemas Operativos - II Semestre 2021 <br>
+
+Proyecto creado por:
+- Eduardo Binns Sánchez <a href="https://github.com/EdBinns">GitHub<a/>
+- Anthony Gariffith González <a href="https://github.com/AnthonyGriffith">GitHub<a/>
+- Andres Mora Barrantes <a href="https://github.com/amorabarrantes">GitHub<a/>
+
+
 # Analizador de peliculas con YOLO V3  
 
 Al realizar este proyecto, se esperaba crear alguna forma de analizar peliculas con el fin de obtener escenas que contengan cierto tipo de imagenes buscadas. En este repositorio en particular se buscan imagenes que puedan llegar a ser sensibles para una audiencia menor de edad. Siendo ejemplo de esta problematica las pistolas, el fuego y los rifles.  
